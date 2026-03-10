@@ -1,0 +1,23 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noEmit": false,
+    "module": "CommonJS",
+    "moduleResolution": "Node",
+    "outDir": "./dist-server",
+    "rootDir": ".",
+    "incremental": false,
+    "tsBuildInfoFile": "./dist-server/.tsbuildinfo"
+  },
+  "include": [
+    "server.ts",
+    "src/server/**/*.ts",
+    "src/lib/game/**/*.ts",
+    "src/lib/url.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    ".next",
+    "dist-server"
+  ]
+}

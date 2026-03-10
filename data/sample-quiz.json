@@ -1,0 +1,65 @@
+﻿{
+  "title": "City Lights Quiz Night",
+  "questions": [
+    {
+      "prompt": "Which planet is known as the Red Planet?",
+      "choices": [{ "label": "Mars" }, { "label": "Venus" }, { "label": "Mercury" }, { "label": "Jupiter" }],
+      "correctIndex": 0,
+      "durationMs": 15000
+    },
+    {
+      "prompt": "True or false: The Pacific Ocean is larger than the Atlantic Ocean.",
+      "choices": [{ "label": "True" }, { "label": "False" }],
+      "correctIndex": 0,
+      "durationMs": 12000
+    },
+    {
+      "prompt": "What year did the first iPhone launch?",
+      "choices": [{ "label": "2005" }, { "label": "2007" }, { "label": "2009" }, { "label": "2011" }],
+      "correctIndex": 1,
+      "durationMs": 15000
+    },
+    {
+      "prompt": "Which language powers styling on the web?",
+      "choices": [{ "label": "HTML" }, { "label": "CSS" }, { "label": "SQL" }, { "label": "Bash" }],
+      "correctIndex": 1,
+      "durationMs": 15000
+    },
+    {
+      "prompt": "Does sound travel faster in water than in air?",
+      "choices": [{ "label": "Yes" }, { "label": "No" }],
+      "correctIndex": 0,
+      "durationMs": 12000
+    },
+    {
+      "prompt": "Which artist painted the Mona Lisa?",
+      "choices": [{ "label": "Van Gogh" }, { "label": "Picasso" }, { "label": "Leonardo da Vinci" }, { "label": "Claude Monet" }],
+      "correctIndex": 2,
+      "durationMs": 15000
+    },
+    {
+      "prompt": "What is the capital city of Canada?",
+      "choices": [{ "label": "Toronto" }, { "label": "Vancouver" }, { "label": "Ottawa" }, { "label": "Montreal" }],
+      "correctIndex": 2,
+      "durationMs": 15000
+    },
+    {
+      "prompt": "True or false: Bananas are berries in botanical terms.",
+      "choices": [{ "label": "True" }, { "label": "False" }],
+      "correctIndex": 0,
+      "durationMs": 12000
+    },
+    {
+      "prompt": "Which team sport uses the term 'love' for zero?",
+      "choices": [{ "label": "Tennis" }, { "label": "Cricket" }, { "label": "Basketball" }, { "label": "Hockey" }],
+      "correctIndex": 0,
+      "durationMs": 15000
+    },
+    {
+      "prompt": "Which of these is a JavaScript runtime?",
+      "choices": [{ "label": "Node.js" }, { "label": "Django" }, { "label": "Laravel" }, { "label": "Rails" }],
+      "correctIndex": 0,
+      "durationMs": 15000
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "name": "pulsequiz-live",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development tsx watch server.ts",
+    "build": "next build",
+    "build:server": "tsc -p tsconfig.server.json && node scripts/write-dist-server-package.cjs",
+    "build:all": "npm run build && npm run build:server",
+    "local": "npm run build:all && cross-env NODE_ENV=production node dist-server/server.js",
+    "start": "cross-env NODE_ENV=production tsx server.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.469.0",
+    "next": "^15.2.0",
+    "qrcode": "^1.5.4",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "socket.io": "^4.8.1",
+    "socket.io-client": "^4.8.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "@types/qrcode": "^1.5.5",
+    "@types/react": "^19.0.2",
+    "@types/react-dom": "^19.0.2",
+    "autoprefixer": "^10.4.20",
+    "cross-env": "^7.0.3",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.16",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  }
+}

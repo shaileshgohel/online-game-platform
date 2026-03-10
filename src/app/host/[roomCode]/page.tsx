@@ -10,27 +10,8 @@ import { LiveStage } from "@/components/live-stage";
 import { QrPanel } from "@/components/qr-panel";
 import { getSocket } from "@/lib/client/socket";
 import { readHostToken, writeHostToken } from "@/lib/client/storage";
+import { getPrimaryHostActionEvent, getPrimaryHostActionLabel } from "@/lib/game/host-controls";
 import type { HostRoomState } from "@/lib/game/types";
-
-function nextActionLabel(state: HostRoomState | null) {
-  if (!state) {
-    return "Loading...";
-  }
-
-  if (state.status === "lobby") {
-    return "Start game";
-  }
-
-  if (state.status === "inQuestion") {
-    return "Reveal answer";
-  }
-
-  if (state.status === "reveal") {
-    return state.currentQuestionIndex >= state.totalQuestions - 1 ? "Show final results" : "Next question";
-  }
-
-  return "Game finished";
-}
 
 export default function HostRoomPage() {
   const params = useParams<{ roomCode: string }>();
@@ -98,6 +79,8 @@ export default function HostRoomPage() {
     });
   };
 
+  const primaryActionEvent = getPrimaryHostActionEvent(roomState);
+
   return (
     <AppShell>
       <div className="grid gap-6 xl:grid-cols-[1.18fr_0.82fr]">
@@ -131,11 +114,11 @@ export default function HostRoomPage() {
               <button
                 type="button"
                 className="primary-button"
-                disabled={!roomState || roomState.status === "ended"}
-                onClick={() => sendHostEvent(roomState?.status === "lobby" ? "game:start" : "question:next")}
+                disabled={!primaryActionEvent}
+                onClick={() => primaryActionEvent && sendHostEvent(primaryActionEvent)}
               >
                 <Play className="h-4 w-4" />
-                {nextActionLabel(roomState)}
+                {getPrimaryHostActionLabel(roomState)}
               </button>
               <button
                 type="button"

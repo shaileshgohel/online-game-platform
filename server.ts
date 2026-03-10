@@ -16,7 +16,15 @@ async function bootstrap() {
 
   await app.prepare();
 
-  const httpServer = createServer((req, res) => handle(req, res));
+  const httpServer = createServer((req, res) => {
+    if (req.url === "/healthz") {
+      res.writeHead(200, { "Content-Type": "text/plain; charset=utf-8" });
+      res.end("ok");
+      return;
+    }
+
+    handle(req, res);
+  });
   const io = new SocketIOServer(httpServer, {
     cors: {
       origin: true,

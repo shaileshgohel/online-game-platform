@@ -40,7 +40,7 @@ PulseQuiz Live is a Next.js + Socket.IO quiz game built for live sessions with t
 
 ## Prerequisites
 
-- Node.js 20+
+- Node.js 22+
 - npm 10+
 
 ## Environment variables
@@ -95,16 +95,15 @@ This will:
 ## Production build
 
 ```bash
-npm run build
+npm run build:all
 npm run start
 ```
 
-This runs the built Next.js app and Socket.IO server together in one Node process.
+This compiles the Next.js app and the custom Socket.IO server, then runs the production Node service.
 
-If you want the non-`tsx` production path directly, use:
+If you want the direct command without the npm script, use:
 
 ```bash
-npm run build:all
 node dist-server/server.js
 ```
 
@@ -173,7 +172,15 @@ Deploy as a single Node service on:
 - Fly.io
 - any Docker-capable VM or container platform
 
-Set:
+For Render, this repo now includes `render.yaml` with:
+
+- build command: `npm install && npm run build:all`
+- start command: `npm start`
+- health check path: `/healthz`
+
+The server also auto-detects Render's `RENDER_EXTERNAL_URL`, so you usually do not need to set `APP_URL` manually there. If you already deployed an older version of this repo, push the latest code and trigger a manual redeploy so Render picks up the new health check and start path.
+
+For other hosts, set:
 
 - `APP_URL=https://your-domain.com`
 - `NEXT_PUBLIC_APP_URL=https://your-domain.com`

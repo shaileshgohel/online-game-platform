@@ -1,5 +1,6 @@
-﻿import type { Server as SocketIOServer, Socket } from "socket.io";
+import type { Server as SocketIOServer, Socket } from "socket.io";
 
+import { LEADERBOARD_LIMIT } from "../lib/game/constants";
 import { normalizeQuiz } from "../lib/game/quiz";
 import { getAppUrl } from "../lib/url";
 import { GameError, GameStore, type PhaseTransition } from "./gameStore";
@@ -101,22 +102,22 @@ export function attachQuizGameSocketServer(io: SocketIOServer) {
     if (transition.type === "reveal" && room.lastReveal) {
       const payload = {
         correctIndex: room.lastReveal.correctIndex,
-        leaderboard: room.lastReveal.leaderboard.slice(0, 10),
+        leaderboard: room.lastReveal.leaderboard.slice(0, LEADERBOARD_LIMIT),
         stats: room.lastReveal.stats,
       };
 
       io.to(viewerChannel(room.code)).emit("question:reveal", payload);
       io.to(participantChannel(room.code)).emit("question:reveal", payload);
       io.to(viewerChannel(room.code)).emit("leaderboard:update", {
-        leaderboard: room.lastReveal.leaderboard.slice(0, 10),
+        leaderboard: room.lastReveal.leaderboard.slice(0, LEADERBOARD_LIMIT),
       });
       io.to(participantChannel(room.code)).emit("leaderboard:update", {
-        leaderboard: room.lastReveal.leaderboard.slice(0, 10),
+        leaderboard: room.lastReveal.leaderboard.slice(0, LEADERBOARD_LIMIT),
       });
     }
 
     if (transition.type === "ended") {
-      const finalLeaderboard = buildHostRoomState(room, appUrl, "stage").finalLeaderboard.slice(0, 10);
+      const finalLeaderboard = buildHostRoomState(room, appUrl, "stage").finalLeaderboard.slice(0, LEADERBOARD_LIMIT);
       io.to(viewerChannel(room.code)).emit("leaderboard:update", { leaderboard: finalLeaderboard });
       io.to(participantChannel(room.code)).emit("leaderboard:update", { leaderboard: finalLeaderboard });
     }

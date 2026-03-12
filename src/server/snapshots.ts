@@ -1,3 +1,4 @@
+import { LEADERBOARD_LIMIT } from "../lib/game/constants";
 import { buildLeaderboard, getRankForPlayer } from "../lib/game/scoring";
 import type { HostRoomState, PlayerRoomState, QuestionReveal, RoomRecord } from "../lib/game/types";
 import { buildJoinUrl, buildStageUrl } from "../lib/url";
@@ -109,7 +110,7 @@ export function buildPlayerRoomState(room: RoomRecord, playerId: string): Player
           pointsAwarded: currentAnswer?.pointsAwarded ?? 0,
           scoreTotal: player.scoreTotal,
           streakCount: player.streakCount,
-          leaderboard: leaderboard.slice(0, 10),
+          leaderboard: leaderboard.slice(0, LEADERBOARD_LIMIT),
           rank: getRankForPlayer(leaderboard, player.id),
         }
       : null;
@@ -127,12 +128,13 @@ export function buildPlayerRoomState(room: RoomRecord, playerId: string): Player
     rank: getRankForPlayer(leaderboard, player.id),
     playersCount: room.players.size,
     connectedCount: [...room.players.values()].filter((entry) => entry.connected).length,
+    choices: question?.choices ?? [],
     choiceCount: question?.choices.length ?? 0,
     durationMs: room.status === "inQuestion" ? room.questionDurationMs : 0,
     startedAt: room.status === "inQuestion" ? room.questionStartedAt : null,
     hasAnswered: Boolean(currentAnswer),
     selectedChoiceIndex: currentAnswer?.choiceIndex ?? null,
     reveal,
-    finalLeaderboard: leaderboard.slice(0, 10),
+    finalLeaderboard: leaderboard.slice(0, LEADERBOARD_LIMIT),
   };
 }

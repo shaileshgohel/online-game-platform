@@ -136,6 +136,7 @@ export interface PlayerRoomState {
   rank: number | null;
   playersCount: number;
   connectedCount: number;
+  choices: QuizChoice[];
   choiceCount: number;
   durationMs: number;
   startedAt: number | null;

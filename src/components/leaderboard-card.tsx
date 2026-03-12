@@ -1,5 +1,6 @@
-﻿import clsx from "clsx";
+import clsx from "clsx";
 
+import { LEADERBOARD_LIMIT } from "@/lib/game/constants";
 import type { LeaderboardEntry } from "@/lib/game/types";
 
 export function LeaderboardCard({
@@ -18,12 +19,12 @@ export function LeaderboardCard({
       <div className="mb-4 flex items-center justify-between">
         <h3 className="font-display text-2xl font-semibold text-white">{title}</h3>
         <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs uppercase tracking-[0.24em] text-slate-300">
-          Top 10
+          Top {LEADERBOARD_LIMIT}
         </span>
       </div>
 
       <div className="space-y-2">
-        {entries.slice(0, 10).map((entry) => (
+        {entries.slice(0, LEADERBOARD_LIMIT).map((entry) => (
           <div
             key={entry.playerId}
             className={clsx(

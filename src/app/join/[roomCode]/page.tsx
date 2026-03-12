@@ -176,7 +176,7 @@ export default function JoinRoomPage() {
                   Question {roomState.currentQuestionIndex + 1} of {roomState.totalQuestions}
                 </div>
                 <PlayerAnswerGrid
-                  choiceCount={roomState.choiceCount}
+                  choices={roomState.choices}
                   disabled={roomState.hasAnswered || pendingChoiceIndex !== null}
                   selectedChoiceIndex={roomState.selectedChoiceIndex}
                   pendingChoiceIndex={pendingChoiceIndex}

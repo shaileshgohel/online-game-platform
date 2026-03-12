@@ -73,6 +73,10 @@ export default function HostRoomPage() {
       return;
     }
 
+    if (eventName === "question:next" && roomState?.status === "reveal") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
     getSocket().emit(eventName, {
       roomCode,
       hostToken,
